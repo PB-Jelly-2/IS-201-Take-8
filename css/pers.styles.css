@@ -1,0 +1,70 @@
+/* This is to edit any text within and HTML body code. */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: blue;
+    background-color: silver;
+    }
+/* This is to edit any text specifically within any li code. */
+li {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: normal;
+    }
+/* "a" is to edit any and all hyperlinks. */
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 15px;
+}
+a:visited {
+    color: aqua;
+}
+
+.resumeliheading {
+    font-weight: bolder;
+    font-style: normal;
+}
+.underline {
+    text-decoration: underline;
+}
+/* This is to shape any big walls of text 
+and keep them from running off the page.*/
+.justify{
+    text-align: justify;
+}
+/* This is to insert and edit the background of the home page. */
+.homepg {
+    background-image: url('../Images/Background.jpg');
+    background-position: top;
+}
+/* This is to edit the text not visible with the background pic. */
+.whiteOut {
+    color: rgb(183, 167, 167);
+}
+
+.goldOut{
+    color: goldenrod;
+}
+/* This is to bold anything that needs to stand out more. */
+.contrast {
+    font-weight: bold;
+}
+
+.box1 {
+    border-width: 1px;
+    border-style: solid;
+    border-color: bisque;
+/* You can combine all line items to adjust border style into one line. */
+
+}
+.box2 {
+    padding: 5px;
+}
+.box3 {
+    margin: 50px;
+}

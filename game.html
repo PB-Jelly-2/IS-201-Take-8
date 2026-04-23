@@ -1,0 +1,142 @@
+game.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Batman: Rooftop Rescue</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(#0a0a0a, #1a1a2e);
+        color: #fff;
+        text-align: center;
+    }
+
+    h1 {
+        margin: 10px;
+        color: #f5c518;
+    }
+
+    #gameArea {
+        position: relative;
+        width: 100%;
+        height: 70vh;
+        overflow: hidden;
+        border-top: 2px solid #444;
+    }
+
+    .enemy {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: crimson;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 10px red;
+    }
+
+    .batman {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        background: black;
+        border: 2px solid #f5c518;
+        border-radius: 50%;
+        box-shadow: 0 0 15px #f5c518;
+    }
+
+    #hud {
+        margin: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background: #f5c518;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #ffd84d;
+    }
+</style>
+</head>
+<body>
+
+<h1>🦇 Batman: Rooftop Rescue</h1>
+
+<div id="hud">
+    Score: <span id="score">0</span> |
+    Misses: <span id="misses">0</span>
+</div>
+
+<button onclick="startGame()">Start Game</button>
+
+<div id="gameArea"></div>
+
+<script>
+let score = 0;
+let misses = 0;
+let speed = 2000;
+let gameRunning = false;
+
+function startGame() {
+    score = 0;
+    misses = 0;
+    speed = 2000;
+    gameRunning = true;
+    document.getElementById("score").textContent = score;
+    document.getElementById("misses").textContent = misses;
+    spawnEnemy();
+}
+
+function spawnEnemy() {
+    if (!gameRunning) return;
+
+    const gameArea = document.getElementById("gameArea");
+    const enemy = document.createElement("div");
+    enemy.classList.add("enemy");
+
+    const x = Math.random() * (gameArea.clientWidth - 60);
+    const y = Math.random() * (gameArea.clientHeight - 60);
+
+    enemy.style.left = x + "px";
+    enemy.style.top = y + "px";
+
+    enemy.onclick = () => {
+        score++;
+        document.getElementById("score").textContent = score;
+        enemy.remove();
+
+        // increase difficulty
+        if (speed > 500) speed -= 100;
+    };
+
+    gameArea.appendChild(enemy);
+
+    setTimeout(() => {
+        if (enemy.parentNode) {
+            enemy.remove();
+            misses++;
+            document.getElementById("misses").textContent = misses;
+
+            if (misses >= 5) {
+                gameOver();
+                return;
+            }
+        }
+    }, speed);
+
+    setTimeout(spawnEnemy, speed);
+}
+
+function gameOver() {
+    gameRunning = false;
+    alert("Gotham has fallen! Final Score: " + score);
+}
+</script>
+
+</body>
+</html>
